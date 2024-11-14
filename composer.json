@@ -1,0 +1,8 @@
+{
+    "name": "stdevs/dom-plugin",
+    "type": "october-plugin",
+    "description": "Digital media organizer",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
