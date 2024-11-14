@@ -1,0 +1,13 @@
+{{ form_ajax(__SELF__ ~ '::onSelectItemType')
+}}
+<select name="item_type" class="form-select" aria-label="Default select example">
+    <option value="book_form">Book</option>
+    <option value="game_form">Game</option>
+    <option value="album_form">Album</option>
+</select>
+<button type="submit" class="btn btn-primary" data-request-data="{ 'item_type': 'item_type' }">Select type</button>
+{{ form_close() }}
+
+<div id="item_form">
+
+</div>

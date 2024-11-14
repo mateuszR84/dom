@@ -44,10 +44,9 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        return []; // Remove this line to activate
-
         return [
-            'StDevs\Dom\Components\MyComponent' => 'myComponent',
+            'StDevs\Dom\Components\CollectionList' => 'collectionList',
+            'StDevs\Dom\Components\CollectionItemCreate' => 'collectionItemCreate',
         ];
     }
 
