@@ -18,6 +18,14 @@ return new class extends Migration
     {
         Schema::create('stdevs_dom_items', function(Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('slug');
+            $table->text('artist');
+            $table->text('barcode')->nullable();
+            $table->json('genres')->nullable();
+            $table->dateTime('release_date')->nullable();
+            $table->string('description')->nullable();
+            $table->text('rate')->nullable();
             $table->timestamps();
         });
     }

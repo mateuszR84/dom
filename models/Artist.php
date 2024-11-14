@@ -3,18 +3,18 @@
 use Model;
 
 /**
- * Item Model
+ * Artist Model
  *
  * @link https://docs.octobercms.com/3.x/extend/system/models.html
  */
-class Item extends Model
+class Artist extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string table name
      */
-    public $table = 'stdevs_dom_items';
+    public $table = 'stdevs_dom_artists';
 
     /**
      * @var array rules for validation
