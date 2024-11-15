@@ -33,7 +33,9 @@ class CollectionItemCreate extends ComponentBase
         $type = $data['item_type'];
 
         return [
-            '#item_form' => $this->renderPartial('@' . $type, [])
+            '#item_form' => $this->renderPartial('@' . $type, [
+                'type' => $data['item_type'],
+            ])
         ];
     }
 }
