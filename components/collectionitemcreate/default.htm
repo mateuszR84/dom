@@ -1,21 +1,17 @@
+{% set type = __SELF__.type %}
 <div class="container">
     <div class="row">
-    
-    {{ form_ajax(__SELF__ ~ '::onSelectItemType')
-    }}
-    <select name="item_type" class="form-select" aria-label="Default select example">
-        <option value="book">Book</option>
-        <option value="game">Game</option>
-        <option value="album">Album</option>
-    </select>
-    <button type="submit" class="btn btn-primary" data-request-data="{ 'item_type': 'item_type' }">Select type</button>
-    {{ form_close() }}
-
     {# item form placeholder #}
     <div>
-        {{ form_ajax(__SELF__ ~ '::onSaveAlbum')
+        {{ form_ajax(__SELF__ ~ '::onSaveAlbum', {
+                'files': true,
+                'flash': true,
+                'data-change-monitor': true,
+                'data-window-close-confirm': "There are unsaved changes. Do you really want to leave the page?"
+            })
         }}
             <div id="item_form">
+                {% partial __SELF__ ~ '::' ~ type %}
             </div>
         {{ form_close() }}
     </div>

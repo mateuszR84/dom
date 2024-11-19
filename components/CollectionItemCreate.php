@@ -11,6 +11,13 @@ use Cms\Classes\ComponentBase;
  */
 class CollectionItemCreate extends ComponentBase
 {
+    /**
+     * Item type, ie. album, book ...
+     *
+     * @var string
+     */
+    public $type;
+
     public function componentDetails()
     {
         return [
@@ -24,7 +31,18 @@ class CollectionItemCreate extends ComponentBase
      */
     public function defineProperties()
     {
-        return [];
+        return [
+            'type' => [
+                'title' => 'Type',
+                'description' => 'Select item type',
+                'type' => 'string',
+            ]
+        ];
+    }
+
+    public function onRun()
+    {
+        $this->type = $this->property('type');
     }
 
     public function onSelectItemType()
