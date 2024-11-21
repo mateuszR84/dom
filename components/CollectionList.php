@@ -1,4 +1,6 @@
-<?php namespace StDevs\Dom\Components;
+<?php
+
+namespace StDevs\Dom\Components;
 
 use Cms\Classes\ComponentBase;
 
@@ -13,7 +15,7 @@ class CollectionList extends ComponentBase
     {
         return [
             'name' => 'Collection List Component',
-            'description' => 'No description provided yet...'
+            'description' => 'Display collection items'
         ];
     }
 
@@ -22,6 +24,17 @@ class CollectionList extends ComponentBase
      */
     public function defineProperties()
     {
-        return [];
+        return [
+            'type' => [
+                'title' => 'Type',
+                'description' => 'Select item type',
+                'type' => 'string',
+            ]
+        ];
+    }
+
+    public function onRun()
+    {
+        $type = $this->property('type');
     }
 }
