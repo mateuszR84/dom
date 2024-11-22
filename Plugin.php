@@ -45,6 +45,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            'StDevs\Dom\Components\AlbumsList' => 'albumsList',
             'StDevs\Dom\Components\CollectionList' => 'collectionList',
             'StDevs\Dom\Components\CollectionItemCreate' => 'collectionItemCreate',
         ];

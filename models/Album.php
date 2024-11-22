@@ -1,7 +1,11 @@
-<?php namespace StDevs\Dom\Models;
+<?php
+
+namespace StDevs\Dom\Models;
 
 use Model;
+use October\Rain\Database\Traits\Sluggable;
 use System\Models\File;
+use October\Rain\Support\Facades\Input;
 
 /**
  * Album Model
@@ -10,6 +14,8 @@ use System\Models\File;
  */
 class Album extends Model
 {
+    use Sluggable;
+
     use \October\Rain\Database\Traits\Validation;
 
     /**
@@ -21,6 +27,10 @@ class Album extends Model
      * @var array rules for validation
      */
     public $rules = [];
+
+    public $slugs = [
+        'slug' => ['title', 'artist'],
+    ];
 
     public $fillable = [
         'title',
@@ -39,18 +49,29 @@ class Album extends Model
         'cover' => File::class,
     ];
 
-    public function onSave(array $data = null)
+    public function onCreateFromPost(array $data = null)
     {
         $this->title = $data['title'];
         $this->artist = $data['artist'];
-        $this->genres = $data['genres'];
-        $this->rating = $data['rating'];  
-        $this->barcode = $data['barcode'];  
-        $this->release_date = $data['release_date'];  
-        $this->description = $data['description'];  
+        $this->genres = $data['genres'] ?? '';
+        $this->rating = $data['rating'] ?? '';
+        $this->barcode = $data['barcode'] ?? '';
+        $this->release_date = $data['release_date'] ?? null;
+        $this->description = $data['description'] ?? '';
 
-        
-        
+        if ($avatar = Input::file('cover')) {
+            $this->setCover($avatar);
+        }
+
         $this->save();
+    }
+
+    public function setCover($cover)
+    {
+        $file = new File();
+        $file->data = $cover;
+        $file->is_public = false;
+        $file->save();
+        $this->cover()->add($file);
     }
 }

@@ -5,6 +5,7 @@ namespace StDevs\Dom\Components;
 use StDevs\Dom\Models\Album;
 use Cms\Classes\ComponentBase;
 use October\Rain\Support\Facades\Flash;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * CollectionItemCreate Component
@@ -66,9 +67,11 @@ class CollectionItemCreate extends ComponentBase
             return;
         }
 
-        (new Album())->onSave($data);
+        (new Album())->onCreateFromPost($data);
 
         Flash::success('Item successfully added');
+
+        return Redirect::refresh();
     }
 
     public function onSearchAlbum(string $barcode = null) 

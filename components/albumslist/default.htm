@@ -1,0 +1,17 @@
+{% set albums = __SELF__.albums %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for album in albums %}
+            <div class="col">
+                <a href="{{ 'dom/album'|page({ 'slug': album.slug }) }}">
+                    <div class="card">
+                        <img src="{{ album.cover.path }}" class="card-img-top" alt="{{ album.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ album.title|upper }} - {{ album.artist }} </h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
