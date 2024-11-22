@@ -3,12 +3,38 @@
 </div>
 <h1 class="mb-5 mt-1">Add new {{ type }}</h1>
 <div class="form-floating mb-3">
-  <input type="text" class="form-control" id="floatingTitle" placeholder="Album title">
+  <input name="title" type="text" class="form-control" id="floatingTitle" placeholder="Album title" required>
   <label for="floatingTitle">Title</label>
 </div>
-<div class="form-floating">
-  <input type="text" class="form-control" id="floatingBarcode" placeholder="Barcode">
-  <label for="floatingBarcode">Barcode</label>
+
+<div class="form-floating mb-3">
+  <input name="artist" type="text" class="form-control" id="floatingArtist" placeholder="Artist" required>
+  <label for="floatingArtist">Artist</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input name="genres" type="text" class="form-control" id="floatingGenres" placeholder="Genres">
+  <label for="floatingGenres">Genres</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input name="release_date" type="text" class="form-control" id="floatingReleased" placeholder="Release date">
+  <label for="floatingReleased">Release date</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input name="description" type="text" class="form-control" id="floatingDescription" placeholder="Description">
+  <label for="floatingDescription">Description</label>
+</div>
+
+<div class="mb-3">
+  <label for="cover">Add cover</label>
+  <input name="cover" type="file" class="form-control" id="cover" accept="image/png, image/jpg">
+</div>
+
+<div>
+    <label for="rating" class="form-label">Your rating</label>
+    <input type="range" class="form-range" min="0" max="5" step="1" id="rating" name="rating">
 </div>
 <button type="submit" class="btn btn-primary mt-5">Save {{ type }}</button>
 

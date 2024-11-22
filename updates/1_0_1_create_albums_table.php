@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stdevs_dom_items', function(Blueprint $table) {
+        Schema::create('stdevs_dom_albums', function(Blueprint $table) {
             $table->id();
             $table->text('title');
             $table->text('slug');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->json('genres')->nullable();
             $table->dateTime('release_date')->nullable();
             $table->string('description')->nullable();
-            $table->text('rate')->nullable();
+            $table->text('rating')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stdevs_dom_items');
+        Schema::dropIfExists('stdevs_dom_albums');
     }
 };

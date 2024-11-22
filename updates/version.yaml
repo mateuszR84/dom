@@ -2,5 +2,3 @@ v1.0.1:
     - First version of Dom
     - 1_0_1_create_albums_table.php
     - 1_0_1_create_artists_table.php
-    - 1_0_1_create_books_table.php
-    - 1_0_1_create_games_table.php

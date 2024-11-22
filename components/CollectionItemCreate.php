@@ -2,7 +2,9 @@
 
 namespace StDevs\Dom\Components;
 
+use StDevs\Dom\Models\Album;
 use Cms\Classes\ComponentBase;
+use October\Rain\Support\Facades\Flash;
 
 /**
  * CollectionItemCreate Component
@@ -55,5 +57,26 @@ class CollectionItemCreate extends ComponentBase
                 'type' => $data['item_type'],
             ])
         ];
+    }
+
+    public function onSave(array $data = null) 
+    {
+        $data = post();
+        if (!$data) {
+            return;
+        }
+
+        (new Album())->onSave($data);
+
+        Flash::success('Item successfully added');
+    }
+
+    public function onSearchAlbum(string $barcode = null) 
+    {
+        $data = post();
+        if (!$data) {
+            return;
+        }
+        $barcode = $data['barcode'];
     }
 }

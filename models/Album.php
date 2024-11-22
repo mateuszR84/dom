@@ -38,4 +38,19 @@ class Album extends Model
     public $attachOne = [
         'cover' => File::class,
     ];
+
+    public function onSave(array $data = null)
+    {
+        $this->title = $data['title'];
+        $this->artist = $data['artist'];
+        $this->genres = $data['genres'];
+        $this->rating = $data['rating'];  
+        $this->barcode = $data['barcode'];  
+        $this->release_date = $data['release_date'];  
+        $this->description = $data['description'];  
+
+        
+        
+        $this->save();
+    }
 }
