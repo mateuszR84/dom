@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('artist');
             $table->text('barcode')->nullable();
             $table->json('genres')->nullable();
+            $table->json('tracklist')->nullable();
             $table->dateTime('release_date')->nullable();
             $table->string('description')->nullable();
             $table->text('rating')->nullable();

@@ -1,0 +1,33 @@
+{% set album = __SELF__.albumItem %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ album.cover.path }}" class="img-fluid" alt="{{ album.title }}" />
+        </div>
+        <div class="col-md-8">
+            <h2>{{ album.title }}</h2>
+            <p><strong>Artist:</strong> {{ album.artist }}</p>
+            <p><strong>Release Date:</strong> {{ album.release_date }}</p>
+            <p><strong>Genre:</strong> {{ album.genre }}</p>
+
+            <h4>Tracklist:</h4>
+            <ul>
+                {% for track in album.tracklist %}
+                    <li>{{ loop.index }}. {{ track }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <h3 class="mt-4">Notes:</h3>
+        <p>{{ album.description }}</p>
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/album/6Pz06FAaeym0JSqVqIkN56?utm_source=generator"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+        ></iframe>
+    </div>
+</div>

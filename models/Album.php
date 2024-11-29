@@ -42,7 +42,8 @@ class Album extends Model
     ];
 
     public $jsonable = [
-        'genres'
+        'genres',
+        'tracklist',
     ];
 
     public $attachOne = [
@@ -73,5 +74,12 @@ class Album extends Model
         $file->is_public = false;
         $file->save();
         $this->cover()->add($file);
+    }
+
+    public function getReleaseDateAttribute()
+    {
+        if ($this->release_date) {
+            return $this->release_date->format('Y-m-d');
+        }
     }
 }

@@ -46,6 +46,7 @@ class Plugin extends PluginBase
     {
         return [
             'StDevs\Dom\Components\AlbumsList' => 'albumsList',
+            'StDevs\Dom\Components\AlbumItem' => 'albumItem',
             'StDevs\Dom\Components\CollectionList' => 'collectionList',
             'StDevs\Dom\Components\CollectionItemCreate' => 'collectionItemCreate',
         ];
