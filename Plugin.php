@@ -45,6 +45,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            'StDevs\Dom\Components\GamesList' => 'gamesList',
+            'StDevs\Dom\Components\GameItem' => 'gameItem',
             'StDevs\Dom\Components\CollectionList' => 'collectionList',
             'StDevs\Dom\Components\CollectionItemCreate' => 'collectionItemCreate',
         ];

@@ -21,12 +21,14 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('platform')->nullable();
+            $table->string('type')->nullable();
             $table->string('barcode')->nullable();
             $table->string('series')->nullable();
             $table->json('genres')->nullable();
             $table->dateTime('release_date')->nullable();
-            $table->string('description')->nullable();
-            $table->string('rate')->nullable();
+            $table->text('notes')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('personal_rating')->nullable();
             $table->timestamps();
         });
     }
