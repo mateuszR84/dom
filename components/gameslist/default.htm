@@ -1,0 +1,30 @@
+{% set games = __SELF__.games %}
+{% set mode = __SELF__.mode %}
+<div class="container">
+    {% if __SELF__.filters %}
+        {% partial '::filters' %}
+    {% endif %}
+    {% if mode == 'scroller' %}
+    <div class="container-fluid" id="scroller">
+        <div class="row row-cols-1 row-cols-md-3 g-4 flex-nowrap scroller">
+            {% for game in games %}
+            <div class="col mb-5">
+                {% partial '::gamecard' game = game %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% if mode == 'pagination' %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for game in games %}
+        <div class="col">
+            {% partial '::gamecard' game = game %}
+        </div>
+        {% endfor %}
+    </div>
+    {% if games.lastPage > 1 %}
+        {% partial '::pagination' games = games %}
+    {% endif %}
+    {% endif %}
+</div>

@@ -1,1 +1,55 @@
-<h1>Game</h1>
+<div class="mt-5">
+    <a href="{{ 'dom/dom'|page }}"><i class="fa-solid fa-arrow-left"></i> Back to main page</a>
+</div>
+
+<h1 class="mb-3 mt-4">Add new {{ type }}</h1>
+
+<div class="d-flex">
+    <select class="form-select form-select-lg mb-3 flex-grow-1" aria-label="platform select" name="platform">
+        <option value="PC" selected>PC</option>
+        <option value="PS">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <select class="form-select form-select-lg mb-3 flex-grow-1 ms-2" aria-label="type select" name="type">
+        <option value="">Select type</option>
+        <option value="Box">Box</option>
+        <option value="Electronic">Electronic</option>
+    </select>
+</div>
+
+<div class="form-floating mb-3">
+  <input type="text" name="title" class="form-control" id="floatingTitle" placeholder="Album title" required>
+  <label for="floatingTitle">Title</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input type="text" name="series" class="form-control" id="series" placeholder="Series">
+  <label for="series">Series</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input type="text" name="genres" class="form-control" id="genres" placeholder="Genres">
+  <label for="genres">Genres</label>
+</div>
+
+<div class="form-floating mb-3">
+  <input name="release_date" type="date" class="form-control" id="release_date" placeholder="Release date">
+  <label for="release_date">Release date</label>
+</div>
+
+<div class="mb-3">
+  <label for="notes" class="form-label">Notes</label>
+  <textarea name="notes" class="form-control" id="notes" rows="3"></textarea>
+</div>
+
+<div class="mb-3">
+  <label for="cover" class="form-label">Add cover</label>
+  <input name="cover" type="file" class="form-control" id="cover" accept="image/*">
+</div>
+
+{# TODO: rating stars #}
+<input type="hidden" name="itemType" value="Game">
+
+<button type="submit" class="btn btn-primary mt-5">Save {{ type }}</button>

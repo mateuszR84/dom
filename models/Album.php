@@ -1,6 +1,7 @@
 <?php namespace StDevs\Dom\Models;
 
 use Model;
+use October\Rain\Database\Traits\Sluggable;
 use System\Models\File;
 
 /**

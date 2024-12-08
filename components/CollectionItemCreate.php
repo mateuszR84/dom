@@ -2,7 +2,11 @@
 
 namespace StDevs\Dom\Components;
 
+use StDevs\Dom\Models\Game;
+use StDevs\Dom\Models\Album;
 use Cms\Classes\ComponentBase;
+use October\Rain\Support\Facades\Flash;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * CollectionItemCreate Component
@@ -55,5 +59,28 @@ class CollectionItemCreate extends ComponentBase
                 'type' => $data['item_type'],
             ])
         ];
+    }
+    
+    public function onSave(array $data = null) 
+    {
+        $data = post();
+        if (!$data) {
+            return;
+        }
+
+        $itemType = $data['itemType'];
+
+        if ($itemType === 'Game') {
+            (new Game())->onCreateFromPost($data);
+        } elseif ($itemType === 'Album') {
+            (new Album())->onCreateFromPost($data);
+        } elseif ($itemType === 'Book') {
+            // (new Album())->onCreateFromPost($data);
+        }
+
+
+        Flash::success('Item successfully added');
+
+        return Redirect::refresh();
     }
 }

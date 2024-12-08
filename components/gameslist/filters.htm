@@ -1,0 +1,27 @@
+{% set series = __SELF__.series %}
+{% set genres = __SELF__.genres %}
+<h5>Filters and sorting</h5>
+<div class="row filters">
+    <div class="col-md-4 my-2">
+        <div class="filter-series my-2">
+            <label class="me-2" for="series-filter">Filter by Series:</label>
+            <select name="series" id="series-filter">
+                <option value="">-</option>
+                {% for serie in series %}
+                    <option value="{{ serie }}">{{ serie }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4 my-2">
+        <div class="filter-genres my-2">
+            <label class="me-2" for="genres-filter">Filter by genres:</label>
+            <select name="genres" id="genres-filter">
+                <option value="">-</option>
+                {% for genre in genres %}
+                    <option value="{{ genre }}">{{ genre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
