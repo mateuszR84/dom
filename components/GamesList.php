@@ -15,6 +15,7 @@ class GamesList extends ComponentBase
     public $genres;
     public $filters;
     public $mode;
+    public $sortBy = 'created_at';
     
     public function componentDetails()
     {
@@ -49,21 +50,43 @@ class GamesList extends ComponentBase
                 ],
                 'default' => 'pagination'
             ],
+            'sortBy' => [
+                'title' => 'Sort by',
+                'type' => 'dropdown',
+                'default' => 'created_at'
+            ],
         ];
+    }
+
+    public function getSortByOptions(): array 
+    {
+        return [
+            'a-z' => 'Alphabetically',
+            'rating' => 'Rating',
+            'release_at' => 'Released at',
+            'created_at' => 'Created at'
+        ]; 
     }
     
     public function onRun()
     {
+        $query = Game::with('cover');
         $maxItems = $this->property('maxItems');
 
-        $this->filters = $this->property('enableFiltering');
+        $sortBy = $this->sortBy;
+        $sortProperty = $this->property('sortBy');
 
-        if ($maxItems) {
-            $this->games = Game::orderByDesc('created_at')->paginate($maxItems);
+        if ($sortProperty === 'created_at') {
+            $query = $query->orderBy('created_at', 'desc');
+        } elseif ($sortProperty = 'rating') {
+            $query = $query->orderBy('personal_rating', 'desc');
+        } elseif ($sortProperty = 'released_at') {
+            $query = $query->orderBy('release_date', 'desc');
         } else {
-            $this->games = Game::orderByDesc('created_at')->get();
+            $query = $query->orderBy('title', 'desc');
         }
-        // $genres = Game::all('genres')->toArray();
+        
+        $this->games = $query->paginate($maxItems);
         // $distinctGenres = [];
         // foreach ($genres as $genre) {
         //     $items = explode(',', $genre['genres']);
@@ -75,12 +98,49 @@ class GamesList extends ComponentBase
         // $distinctGenres = array_unique($distinctGenres);
         // $this->genres = $distinctGenres;
 
+        $this->filters = $this->property('enableFiltering');
         $this->series = Game::distinct()->pluck('series')->sort();
         $this->mode = $this->property('mode');
     }
 
-    public function onAlpha()
+    public function onSortAlphabetically()
     {
-        return;    
+        $data = post();
+
+        $maxItems = $this->property('maxItems');
+        $this->games = Game::with('cover')->orderBy('title', $data['dir'])->paginate($maxItems);
+
+        return [
+            '#games-collection' => $this->renderPartial('@gamescollection', [
+                'games' => $this->games
+            ])
+        ];
+    }
+    
+    public function onSortByRelease()
+    {
+        $data = post();
+
+        $maxItems = $this->property('maxItems');
+        $query = Game::with('cover')->orderBy('release_date', $data['dir']); 
+        $this->games = $query->paginate($maxItems);
+
+        return [
+            '#games-collection' => $this->renderPartial('@gamescollection', [
+                'games' => $this->games
+            ])
+        ];
+    }
+
+    public function onResetSorting()
+    {
+        $maxItems = $this->property('maxItems');
+        $this->games = Game::with('cover')->orderBy($this->property('sortBy'), 'desc')->paginate($maxItems);
+
+        return [
+            '#games-collection' => $this->renderPartial('@gamescollection', [
+                'games' => $this->games
+            ])
+        ];
     }
 }

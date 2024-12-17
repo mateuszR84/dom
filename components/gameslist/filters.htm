@@ -1,7 +1,27 @@
 {% set series = __SELF__.series %}
 {% set genres = __SELF__.genres %}
-<h5>Filters and sorting</h5>
-<div class="row filters">
+<h5 class="text-center">Filters and sorting</h5>
+<div class="row filters my-3">
+    <div class="filter-row text-center">
+        <a href=";javascript" data-request="onSortAlphabetically" data-request-data="'dir': 'asc'">
+            <i class="fa-solid fa-arrow-down-a-z filter-icon me-3" id="a-z-asc"></i>
+        </a>
+        <a href=";javascript" data-request="onSortAlphabetically" data-request-data="'dir': 'desc'">
+            <i class="fa-solid fa-arrow-down-z-a filter-icon me-3" id="a-z-desc"></i>
+        </a>
+        <a href=";javascript" data-request="onSortByRating" data-request-data="'dir': 'desc'">
+            <i class="fa-solid fa-star filter-icon" id="rating"></i>
+            <label for="rating" class="me-3">Rating</label>
+        </a>
+        <a href=";javascript" data-request="onSortByRelease" data-request-data="'dir': 'desc'">
+            <i class="fa-solid fa-calendar-days filter-icon" id="released-at"></i>
+            <label for="released-at" class="me-3">Release date</label>
+        </a>
+        <a href=";javascript" data-request="onResetSorting">
+            <i class="fa-solid fa-rotate-left filter-icon ms-5" id="reset"></i>
+            <label for="reset">Reset sorting</label>
+        </a>
+    </div>
     <div class="col-md-4 my-2">
         <div class="filter-series my-2">
             <label class="me-2" for="series-filter">Filter by Series:</label>

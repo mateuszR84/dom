@@ -1,0 +1,5 @@
+{% for game in games %}
+<div class="col">
+    {% partial '::gamecard' game = game %}
+</div>
+{% endfor %}

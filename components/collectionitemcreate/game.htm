@@ -4,6 +4,11 @@
 
 <h1 class="mb-3 mt-4">Add new {{ type }}</h1>
 
+<div class="form-check form-switch mb-3">
+    <input name="isFinished" class="form-check-input game-switch" type="checkbox" id="isFinished">
+    <label class="form-check-label" for="isFinished">Already finished?</label>
+</div>
+
 <div class="d-flex">
     <select class="form-select form-select-lg mb-3 flex-grow-1" aria-label="platform select" name="platform">
         <option value="PC" selected>PC</option>
@@ -16,6 +21,16 @@
         <option value="">Select type</option>
         <option value="Box">Box</option>
         <option value="Electronic">Electronic</option>
+    </select>
+    
+    <select class="form-select form-select-lg mb-3 flex-grow-1 ms-2" aria-label="type select" name="client">
+        <option value="">Select client</option>
+        <option value="steam">Steam</option>
+        <option value="GOG">GOG</option>
+        <option value="uplay">Uplay</option>
+        <option value="battlenet">Battle.net</option>
+        <option value="rockstar">Rockstar</option>
+        <option value="epic">Epic</option>
     </select>
 </div>
 

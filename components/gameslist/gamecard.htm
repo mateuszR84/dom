@@ -1,7 +1,19 @@
 <div class="card">
     <div class="card-header">
-        <span class="badge bg-primary">{{ game.platform }}</span>
-        <span class="badge bg-secondary">{{ game.type }}</span>
+        <div class="d-flex justify-content-between">
+            <div>
+                <span class="badge bg-primary me-2">{{ game.platform }}</span>
+                <span class="badge bg-secondary">{{ game.type }}</span>
+            </div>
+            <div>
+                {% if game.is_finished %}
+                    <span class="finished"><i class="fa-regular fa-circle-check"></i> Finished</span>
+                {% endif %}
+            </div>
+            <div>
+                <span>{{ game.release_date|date('Y-m-d') }}</span>
+            </div>
+        </div>
     </div>
     <a href="{{ 'dom/game'|page({ 'slug': game.slug }) }}">
         <img src="{{ game.cover.path }}" class="card-img-top" alt="{{ game.title }}">
@@ -9,13 +21,20 @@
     <div class="card-body">
         <h5 class="card-title text-center">{{ game.title|upper }}</h5>
         <div class="d-flex justify-content-between">
-            <div>
+            <div class="align-items-center">
                 {% for genre in game.genres %}
                     <a href="#">
                         <span class="mt-3 badge {{ genre ? genre : 'bg-primary' }}">{{ genre }}</span>
                     </a>
                 {% endfor %}
             </div>
+            {% if game.client %}
+                <div class="align-items-stretch">
+                    <a href="#">
+                        <img class="client-logo" src="{{ ("/assets/images/game/clients/" ~ game.client ~ ".png")|theme }}" alt="{{ game.client }}-logo">
+                    </a>
+                </div>
+            {% endif %}
             <div class="d-flex">
                 <p class="rating rating-personal">{{ game.personal_rating ? game.personal_rating : 'N/A' }}</p>
                 <p class="rating rating-community mx-2">{{ game.rating ? game.rating : 'N/A' }}</p>

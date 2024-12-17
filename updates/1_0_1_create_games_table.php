@@ -22,13 +22,15 @@ return new class extends Migration
             $table->string('slug');
             $table->string('platform')->nullable();
             $table->string('type')->nullable();
+            $table->string('client')->nullable();
             $table->string('barcode')->nullable();
             $table->string('series')->nullable();
-            $table->json('genres')->nullable();
+            $table->string('genres')->nullable();
             $table->dateTime('release_date')->nullable();
             $table->text('notes')->nullable();
             $table->string('rating')->nullable();
             $table->string('personal_rating')->nullable();
+            $table->boolean('is_finished')->default(false);
             $table->timestamps();
         });
     }

@@ -16,12 +16,8 @@
     </div>
     {% endif %}
     {% if mode == 'pagination' %}
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for game in games %}
-        <div class="col">
-            {% partial '::gamecard' game = game %}
-        </div>
-        {% endfor %}
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="games-collection">
+        {% partial '::gamescollection' games = games %}
     </div>
     {% if games.lastPage > 1 %}
         {% partial '::pagination' games = games %}

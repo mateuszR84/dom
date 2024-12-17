@@ -37,6 +37,7 @@ class Game extends Model
         'title', 
         'rating',
         'platform',
+        'client',
         'type',
         'series',
         'release_date',
@@ -52,11 +53,15 @@ class Game extends Model
         $this->title = $data['title'];
         $this->genres = $data['genres'] ?? '';
         $this->rating = $data['rating'] ?? '';
+        $this->client = $data['client'] ?? '';
         $this->platform = $data['platform'] ?? '';
         $this->type = $data['type'] ?? '';
         $this->series = $data['series'] ?? '';
         $this->release_date = $data['release_date'] ?? null;
         $this->notes = $data['notes'] ?? '';
+        if (isset($data['isFinished']) && $data['isFinished'] === 'on') {
+            $this->is_finished = 1;
+        }
 
         if ($avatar = Input::file('cover')) {
             $this->setCover($avatar);
